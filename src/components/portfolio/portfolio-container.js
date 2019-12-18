@@ -15,6 +15,8 @@ export default class PortfolioContainer extends Component {
         
         /*loops over array and pushes to new array*/
         return data.map(item => {
+            
+            // like a for loop that runs portfolioitem function with title and url args each time and puts it into an array 
             return <PortfolioItem title={item} url={"google.com"} />
         })
     }
