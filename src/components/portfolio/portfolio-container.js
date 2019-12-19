@@ -7,26 +7,34 @@ export default class PortfolioContainer extends Component {
     // Functional is good for rendering - shouldn't have a lot of action/operations
     constructor() {
         super()
-        console.log('Portfolio Container Rendered');
+        
+        this.state = {
+            pageTitle: "Welcome to THE portfolio",
+            data: [
+                {title: 'google'}, 
+                {title: 'yahoo'},
+                {title: 'facebook'},
+                {title: 'amazon'}
+            ]
+        }
     }
 
     portfolioItems() {
-        const data = ['google', 'yahoo', 'facebook', 'amazon']
         
         /*loops over array and pushes to new array*/
-        return data.map(item => {
+        return this.state.data.map(item => {
             
             // like a for loop that runs portfolioitem function with title and url args each time and puts it into an array 
-            return <PortfolioItem title={item} url={"google.com"} />
+            return <PortfolioItem title={item.title} url={"google.com"} />
         })
     }
 
     render(){
         return (
             <div>
-                <h2>Portfolio Items still go here</h2>
+                <h2>{this.state.pageTitle}</h2>
 
-                {this.portfolioItems()} {/*this refers to the class*/}
+                {this.portfolioItems()}
             </div>
         )
     }
