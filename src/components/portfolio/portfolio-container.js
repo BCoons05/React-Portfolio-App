@@ -17,16 +17,29 @@ export default class PortfolioContainer extends Component {
                 {title: 'amazon'}
             ]
         }
+        // normal function needs this, but arrow function does not
+        // this.handlePageTitleUpdate = this.handlePageTitleUpdate.bind(this)
     }
 
     portfolioItems() {
         
         /*loops over array and pushes to new array*/
-        return this.state.data.map(item => {
-            
+        return this.state.data.map(item => { 
             // like a for loop that runs portfolioitem function with title and url args each time and puts it into an array 
             return <PortfolioItem title={item.title} url={"google.com"} />
         })
+    }
+
+    handlePageTitleUpdate = () => {
+        if(this.state.pageTitle != "other thing"){
+            this.setState({
+                pageTitle: "other thing"
+            })
+        }else{
+            this.setState({
+                pageTitle: "Welcome to THE portfolio"
+            })
+        }
     }
 
     render(){
@@ -35,6 +48,9 @@ export default class PortfolioContainer extends Component {
                 <h2>{this.state.pageTitle}</h2>
 
                 {this.portfolioItems()}
+
+                <hr/>
+                <button onClick= {this.handlePageTitleUpdate}>Change Title</button>
             </div>
         )
     }
