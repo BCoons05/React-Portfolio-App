@@ -11,14 +11,24 @@ export default class PortfolioContainer extends Component {
         this.state = {
             pageTitle: "Welcome to THE portfolio",
             data: [
-                {title: 'google'}, 
-                {title: 'yahoo'},
-                {title: 'facebook'},
-                {title: 'amazon'}
+                {title: 'google', category: "search"}, 
+                {title: 'yahoo', category: "search"},
+                {title: 'facebook', category: "social"},
+                {title: 'amazon', category: "ecommerce"}
             ]
         }
         // normal function needs this, but arrow function does not
         // this.handlePageTitleUpdate = this.handlePageTitleUpdate.bind(this)
+        // this.handleFilter = this.handleFilter.bind(this)
+    }
+
+    // iterates over array and returns all that match the input given
+    handleFilter = filter => {
+        this.setState({
+            data: this.state.data.filter(name => {
+                return name.category === filter
+            })
+        })
     }
 
     portfolioItems() {
@@ -46,6 +56,10 @@ export default class PortfolioContainer extends Component {
         return (
             <div>
                 <h2>{this.state.pageTitle}</h2>
+
+                <button onClick={() => this.handleFilter('search')}>Search</button>
+                <button onClick={() => this.handleFilter('ecommerce')}>ecommerce</button>
+                <button onClick={() => this.handleFilter('social')}>social</button>
 
                 {this.portfolioItems()}
 
