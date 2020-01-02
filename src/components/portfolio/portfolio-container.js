@@ -10,6 +10,7 @@ export default class PortfolioContainer extends Component {
         
         this.state = {
             pageTitle: "Welcome to THE portfolio",
+            isLoading: true,
             data: [
                 {title: 'google', category: "search"}, 
                 {title: 'yahoo', category: "search"},
@@ -22,7 +23,7 @@ export default class PortfolioContainer extends Component {
         // this.handleFilter = this.handleFilter.bind(this)
     }
 
-    // iterates over array and returns all that match the input given
+    // iterates over array and returns all that match the input given from button
     handleFilter = filter => {
         this.setState({
             data: this.state.data.filter(name => {
@@ -53,19 +54,34 @@ export default class PortfolioContainer extends Component {
     }
 
     render(){
-        return (
-            <div>
-                <h2>{this.state.pageTitle}</h2>
-
-                <button onClick={() => this.handleFilter('search')}>Search</button>
-                <button onClick={() => this.handleFilter('ecommerce')}>ecommerce</button>
-                <button onClick={() => this.handleFilter('social')}>social</button>
-
-                {this.portfolioItems()}
-
-                <hr/>
-                <button onClick= {this.handlePageTitleUpdate}>Change Title</button>
+        if(this.state.isLoading) {
+            return <div>
+                Loading ...
             </div>
-        )
+        }else{
+            return (
+                <div>
+                    <h2>{this.state.pageTitle}</h2>
+
+                    <button 
+                        onClick={() => this.handleFilter('search')}>
+                            Search
+                    </button>
+                    <button 
+                        onClick={() => this.handleFilter('ecommerce')}>
+                            ecommerce
+                    </button>
+                    <button 
+                        onClick={() => this.handleFilter('social')}>
+                            social
+                    </button>
+
+                    {this.portfolioItems()}
+
+                    <hr/>
+                    <button onClick= {this.handlePageTitleUpdate}>Change Title</button>
+                </div>
+            )
+        }
     }
 }
