@@ -10,7 +10,7 @@ export default class PortfolioContainer extends Component {
         
         this.state = {
             pageTitle: "Welcome to THE portfolio",
-            isLoading: true,
+            isLoading: false,
             data: [
                 {title: 'google', category: "search"}, 
                 {title: 'yahoo', category: "search"},
@@ -55,33 +55,30 @@ export default class PortfolioContainer extends Component {
 
     render(){
         if(this.state.isLoading) {
-            return <div>
-                Loading ...
-            </div>
-        }else{
-            return (
-                <div>
-                    <h2>{this.state.pageTitle}</h2>
-
-                    <button 
-                        onClick={() => this.handleFilter('search')}>
-                            Search
-                    </button>
-                    <button 
-                        onClick={() => this.handleFilter('ecommerce')}>
-                            ecommerce
-                    </button>
-                    <button 
-                        onClick={() => this.handleFilter('social')}>
-                            social
-                    </button>
-
-                    {this.portfolioItems()}
-
-                    <hr/>
-                    <button onClick= {this.handlePageTitleUpdate}>Change Title</button>
-                </div>
-            )
+            return <div>Loading ...</div>
         }
+        return (
+            <div>
+                <h2>{this.state.pageTitle}</h2>
+
+                <button 
+                    onClick={() => this.handleFilter('search')}>
+                        Search
+                </button>
+                <button 
+                    onClick={() => this.handleFilter('ecommerce')}>
+                        ecommerce
+                </button>
+                <button 
+                    onClick={() => this.handleFilter('social')}>
+                        social
+                </button>
+
+                {this.portfolioItems()}
+
+                <hr/>
+                <button onClick= {this.handlePageTitleUpdate}>Change Title</button>
+            </div>
+        )
     }
 }
