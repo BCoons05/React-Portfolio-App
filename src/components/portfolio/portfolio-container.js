@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import Axios from 'axios'
 
 import PortfolioItem from "./portfolio-item"
 
@@ -11,12 +12,7 @@ export default class PortfolioContainer extends Component {
         this.state = {
             pageTitle: "Welcome to THE portfolio",
             isLoading: false,
-            data: [
-                {title: 'google', category: "search"}, 
-                {title: 'yahoo', category: "search"},
-                {title: 'facebook', category: "social"},
-                {title: 'amazon', category: "ecommerce"}
-            ]
+            data: []
         }
         // normal function needs this, but arrow function does not
         // this.handlePageTitleUpdate = this.handlePageTitleUpdate.bind(this)
@@ -33,11 +29,12 @@ export default class PortfolioContainer extends Component {
     }
 
     portfolioItems() {
+        // need - background img, logo, description: description, id: id
         
-        /*loops over array and pushes to new array*/
         return this.state.data.map(item => { 
+            // debugger
             // like a for loop that runs portfolioitem function with title and url args each time and puts it into an array 
-            return <PortfolioItem title={item.title} url={"google.com"} />
+            return <PortfolioItem key={item.id} item={item} />
         })
     }
 
@@ -53,10 +50,29 @@ export default class PortfolioContainer extends Component {
         }
     }
 
+    getPortfolioItems = () => {
+        Axios.get("https://briancoons.devcamp.space/portfolio/portfolio_items")
+        .then(response => {
+        //   console.log('response data: ', response.data)
+          this.setState({
+              data: response.data.portfolio_items
+          })
+        })
+        .catch(err => {
+          console.log(error)
+        })
+      
+      }
+
+      componentDidMount() {
+          this.getPortfolioItems()
+      }
+
     render(){
         if(this.state.isLoading) {
             return <div>Loading ...</div>
         }
+
         return (
             <div>
                 <h2>{this.state.pageTitle}</h2>
