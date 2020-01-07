@@ -29,8 +29,6 @@ export default class PortfolioContainer extends Component {
     }
 
     portfolioItems() {
-        // need - background img, logo, description: description, id: id
-        
         return this.state.data.map(item => { 
             // debugger
             // like a for loop that runs portfolioitem function with title and url args each time and puts it into an array 
