@@ -42,3 +42,8 @@
         }
     }
 }
+
+.img-blur {
+    transition: 1s;
+    filter: brightness(10%);
+}
