@@ -30,8 +30,6 @@ export default class PortfolioContainer extends Component {
 
     portfolioItems() {
         return this.state.data.map(item => { 
-            // debugger
-            // like a for loop that runs portfolioitem function with title and url args each time and puts it into an array 
             return <PortfolioItem key={item.id} item={item} />
         })
     }
@@ -88,7 +86,9 @@ export default class PortfolioContainer extends Component {
                         social
                 </button>
 
-                {this.portfolioItems()}
+                <div className="portfolio-items-wrapper">
+                    {this.portfolioItems()}
+                </div>
 
                 <hr/>
                 <button onClick= {this.handlePageTitleUpdate}>Change Title</button>
