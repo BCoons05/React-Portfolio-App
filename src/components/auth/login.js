@@ -31,11 +31,13 @@ export default class Login extends Component {
     {withCredentials: true}
     ).then(response => {
       if(response.data.status === 'created'){
+        this.props.handleSuccessfulAuth()
         console.log("you did it!")
       }else {
         this.setState({
           errorText: "Email or Password Incorrect"
         })
+        this.props.handleUnsuccessfulAuth()
       }
     }).catch(error => {
       this.setState({
