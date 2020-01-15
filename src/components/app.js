@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import {library} from "@fortawesome/fontawesome-svg-core"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faTrash, faSignOutAlt, faEdit} from "@fortawesome/free-solid-svg-icons"
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,6 +20,8 @@ import PortfolioManager from "./pages/portfolio-manager"
 import PortfolioDetail from "./portfolio/portfolio-detail"
 import Auth from "./pages/auth"
 import NoMatch from "./pages/no-match"
+
+library.add(faTrash, faSignOutAlt, faEdit)
 
 export default class App extends Component {
   constructor(props) {
